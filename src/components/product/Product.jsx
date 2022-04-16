@@ -36,7 +36,7 @@ export default function Product(props) {
                     <div className="saved-price">{discount}% off</div>
                 </div>
                 <div className="card-btn-group">
-                    {isItemInCart(_id) && <button class="btn btn-outline">Go To Cart</button>}
+                    {isItemInCart(_id) && <button className="btn btn-outline">Go To Cart</button>}
                     {!isItemInCart(_id) && <button className="btn btn-fill" onClick={() => dispatch({ type: 'ADD_TO_CART', payload: _id })}>Add To Cart</button>}
                 </div>
             </div>
@@ -56,6 +56,6 @@ export default function Product(props) {
                     </span>
                 </div >
             }
-        </div>
+        </div >
     );
 }
