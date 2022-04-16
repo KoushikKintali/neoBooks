@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Filter from '../../components/filter/Filter';
+import Navbar from '../../components/navbar/Navbar';
 import Product from '../../components/product/Product';
 import './ProductListing.css';
 
@@ -23,6 +24,7 @@ const ProductListing = () => {
 
     return (
         <>
+            <Navbar />
             <section className="content-body products-body">
                 <Filter />
                 <div className="all-products-body">
