@@ -1,5 +1,7 @@
+import { Route, Routes } from 'react-router-dom';
 import "./App.css";
 import Navbar from './components/navbar/Navbar';
+import Login from './pages/Login/Login';
 import ProductListing from './pages/ProductListing/ProductListing';
 
 function App() {
@@ -8,6 +10,10 @@ function App() {
         <div className="App">
             <Navbar />
             <ProductListing />
+            <Routes>
+                <Route path='/products' element={<ProductListing />}></Route>
+                <Route path='/login' element={<Login />}></Route>
+            </Routes>
         </div >
     );
 }
