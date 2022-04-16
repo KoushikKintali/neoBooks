@@ -19,6 +19,7 @@
 
 .card-btn-group .btn {
     width: 100%;
+    cursor: pointer;
 }
 
 .card-btn-group .btn-categories {

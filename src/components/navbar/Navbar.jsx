@@ -1,5 +1,11 @@
 import logo from '../../assets/logo.png';
+import { useCart } from '../../context/cart-context';
+
+
 const Navbar = () => {
+
+    const { store } = useCart();
+    console.log('store.itemsInWishlist', store.itemsInWishlist)
     return (
         <>
             <nav className="nav">
@@ -19,13 +25,21 @@ const Navbar = () => {
                     <li className="badge nav-item">
                         <a className="nav-link" href="./wishlist.html">
                             <span className="material-icons-outlined icon">favorite_border</span>
-                            <span className="badge-count">1</span>
+                            {
+                                store.itemsInWishlist && store.itemsInWishlist.length
+                                    ? <span className="badge-count">{store.itemsInWishlist.length}</span>
+                                    : <></>
+                            }
                         </a>
                     </li>
                     <li className="badge nav-item">
                         <a className="nav-link" href="./cart.html">
                             <span className="material-icons-outlined icon">shopping_cart</span>
-                            <span className="badge-count">1</span>
+                            {
+                                store.itemsInCart && store.itemsInCart.length
+                                    ? <span className="badge-count">{store.itemsInCart.length}</span>
+                                    : <></>
+                            }
                         </a>
                     </li>
                 </ul>

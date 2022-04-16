@@ -20,16 +20,17 @@ const ProductListing = () => {
 
     useEffect(() => fetchProducts(), []);
 
+
     return (
         <>
             <section className="content-body products-body">
                 <Filter></Filter>
-                <div class="all-products-body">
-                    <div class="products-section-title">
-                        <p class="title">Showing All Products</p>
-                        <p class="summary">(Showing 20 products)</p>
+                <div className="all-products-body">
+                    <div className="products-section-title">
+                        <p className="title">Showing All Products</p>
+                        <p className="summary">(Showing 20 products)</p>
                     </div>
-                    <div class="section-group-tiles">
+                    <div className="section-group-tiles">
                         {
                             products.map((product) => {
                                 return (
@@ -39,7 +40,6 @@ const ProductListing = () => {
                         }
                     </div>
                 </div>
-
             </section>
         </>
     );
