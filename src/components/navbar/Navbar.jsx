@@ -5,7 +5,6 @@ import { useCart } from '../../context/cart-context';
 const Navbar = () => {
 
     const { store } = useCart();
-    console.log('store.itemsInWishlist', store.itemsInWishlist)
     return (
         <>
             <nav className="nav">

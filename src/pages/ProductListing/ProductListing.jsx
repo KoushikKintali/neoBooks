@@ -24,7 +24,7 @@ const ProductListing = () => {
     return (
         <>
             <section className="content-body products-body">
-                <Filter></Filter>
+                <Filter />
                 <div className="all-products-body">
                     <div className="products-section-title">
                         <p className="title">Showing All Products</p>
@@ -34,7 +34,7 @@ const ProductListing = () => {
                         {
                             products.map((product) => {
                                 return (
-                                    <Product product={product} key={product._id}></Product>
+                                    <Product product={product} key={product._id} />
                                 );
                             })
                         }

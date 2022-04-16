@@ -1,5 +1,4 @@
 export function CartReducer(state, action) {
-    console.log('called')
     switch (action.type) {
         case 'ADD_TO_CART':
             return { ...state, itemsInCart: state.itemsInCart.concat(action.payload) };

@@ -18,15 +18,26 @@ const Filter = () => {
             <div className="category-group">
                 <p className="title">Category</p>
                 <ul className="category-group-list">
-                    <li><input type="checkbox" /> Category1</li>
-                    <li><input type="checkbox" /> Category1</li>
-                    <li><input type="checkbox" /> Category1</li>
-                    <li><input type="checkbox" /> Category1</li>
-                    <li><input type="checkbox" /> Category1</li>
-                    <li><input type="checkbox" /> Category1</li>
-                    <li><input type="checkbox" /> Category1</li>
-                    <li><input type="checkbox" /> Category1</li>
-                    <li><input type="checkbox" /> Category1</li>
+                    <li>
+                        <input type="checkbox" id='category1-checkbox' />
+                        <label htmlFor='checkbox'>Category1</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id='category2-checkbox' />
+                        <label htmlFor='checkbox'>Category1</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id='category3-checkbox' />
+                        <label htmlFor='checkbox'>Category1</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id='category4-checkbox' />
+                        <label htmlFor='checkbox'>Category1</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id='category5-checkbox' />
+                        <label htmlFor='checkbox'>Category1</label>
+                    </li>
                 </ul>
             </div>
             <div className="rating-group">
@@ -73,10 +84,12 @@ const Filter = () => {
                 <p className="title">Sort by</p>
                 <div className="sort-group-list">
                     <div>
-                        <input type="radio" /> Price - Low to High
+                        <input type="radio" id='low-high-radio' />
+                        <label htmlFor='low-high-radio'>Price - Low to High</label>
                     </div>
                     <div>
-                        <input type="radio" /> Price - High to Low
+                        <input type="radio" id='high-low-radio' />
+                        <label htmlFor='high-low-radio'>Price - High to Low</label>
                     </div>
                 </div>
             </div>
