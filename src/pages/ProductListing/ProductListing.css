@@ -1,0 +1,28 @@
+.products-body {
+    display: flex;
+    flex-direction: row;
+    padding-top: 3rem;
+}
+
+.products-section-title {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.products-section-title .title{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 480px){
+    .products-body {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 720px) and (min-width: 480px){
+    .products-body {
+        flex-direction: column;
+    }
+}

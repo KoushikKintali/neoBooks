@@ -9,6 +9,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@types/react": "^18.0.5",
     "axios": "^0.21.4",
     "dayjs": "^1.10.7",
     "jwt-decode": "^3.1.2",
