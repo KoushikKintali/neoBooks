@@ -4,7 +4,6 @@ import './ToastHandler.css';
 export const ToastHandler = () => {
 
     const { toastHandler } = useToastHandler();
-    console.log('CALLSD')
     const getClassName = (toastHandler) => {
         const className = 'snackbar snackbar-top-right';
         const displayNone = ' display-none';

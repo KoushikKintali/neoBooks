@@ -24,7 +24,6 @@ const Signin = () => {
         if (isRequestBodyValid(body, setToastHandler)) {
             try {
                 event.preventDefault();
-                console.log('Request body validated')
                 const response = await axios.post('/api/auth/login', body);
                 localStorage.setItem("token", response.data.encodedToken);
                 setToastHandler({ type: 'success', message: 'Loggedin successfully' })

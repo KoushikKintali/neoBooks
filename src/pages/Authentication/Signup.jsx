@@ -24,7 +24,6 @@ const Signup = () => {
         if (isRequestBodyValid(body)) {
             try {
                 event.preventDefault();
-                console.log('Request body validated')
                 const response = await axios.post('/api/auth/signup', body);
                 localStorage.setItem("token", response.data.encodedToken);
                 setToastHandler({ type: 'success', message: 'Account created successfully' });
