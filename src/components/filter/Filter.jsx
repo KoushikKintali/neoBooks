@@ -1,6 +1,6 @@
 import './Filter.css';
 
-const Filter = () => {
+export const Filter = () => {
     return (
         <section className="filters-body">
             <div className="filter-title">
@@ -96,5 +96,3 @@ const Filter = () => {
         </section >
     );
 }
-
-export default Filter;

@@ -1,10 +1,29 @@
+import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import { useAuth } from '../../context/auth-context';
 import { useCart } from '../../context/cart-context';
+import { useToastHandler } from '../../context/toast-context';
 
 
-const Navbar = () => {
+export const Navbar = () => {
 
     const { store } = useCart();
+    const { isLoggedIn, removeToken } = useAuth();
+    const navigate = useNavigate();
+    const { setToastHandler } = useToastHandler();
+
+    const isLoginSignupPage = window.location.pathname.includes('login') || window.location.pathname.includes('signup');
+
+    const handleLogoutLogin = () => {
+        if (isLoggedIn) {
+            removeToken();
+            setToastHandler({ type: 'success', message: 'Logged out successfully' });
+            navigate('/login', { replace: true });
+        } else {
+            navigate('/login');
+        }
+    }
+
     return (
         <>
             <nav className="nav">
@@ -18,9 +37,11 @@ const Navbar = () => {
                     <input className="search-input" placeholder="Titles, author, or topics" />
                 </div>
                 <ul className="nav-list nav-icons">
-                    <li className="nav-item">
-                        <a className="nav-link" href="./signin.html">Login</a>
-                    </li>
+                    {!isLoginSignupPage &&
+                        <li className="nav-item">
+                            <a className="nav-link" onClick={() => handleLogoutLogin()}>{isLoggedIn ? 'Logout' : 'Login'}</a>
+                        </li>
+                    }
                     <li className="badge nav-item">
                         <a className="nav-link" href="./wishlist.html">
                             <span className="material-icons-outlined icon">favorite_border</span>
@@ -68,5 +89,3 @@ const Navbar = () => {
         </>
     );
 }
-
-export default Navbar;

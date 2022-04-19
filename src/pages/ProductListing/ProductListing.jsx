@@ -1,11 +1,9 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import Filter from '../../components/filter/Filter';
-import Navbar from '../../components/navbar/Navbar';
-import Product from '../../components/product/Product';
+import { Filter, Navbar, Product } from '../../components/index';
 import './ProductListing.css';
 
-const ProductListing = () => {
+export const ProductListing = () => {
 
     const [products, setProducts] = useState([]);
 
@@ -46,5 +44,3 @@ const ProductListing = () => {
         </>
     );
 }
-
-export default ProductListing;

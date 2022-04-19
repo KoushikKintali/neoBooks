@@ -1,12 +1,13 @@
 import axios from 'axios';
+import { StatusCodes } from 'http-status-codes';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../../components/navbar/Navbar';
+import { Navbar } from '../../components/index';
 import { useToastHandler } from '../../context/toast-context';
 import { captureInput, isRequestBodyValid } from '../../utils/util';
 import './Signin.css';
 
-const Signup = () => {
+export const Signup = () => {
 
     const [signupBody, setSignupBody] = useState({
         firstName: '',
@@ -25,9 +26,10 @@ const Signup = () => {
             try {
                 event.preventDefault();
                 const response = await axios.post('/api/auth/signup', body);
-                localStorage.setItem("token", response.data.encodedToken);
-                setToastHandler({ type: 'success', message: 'Account created successfully' });
-                navigate('/login');
+                if (response.status === StatusCodes.OK) {
+                    setToastHandler({ type: 'success', message: 'Account created successfully' });
+                    navigate('/login');
+                }
             } catch (error) {
                 console.error(error);
                 setToastHandler({ type: 'danger', message: 'Something went wrong' });
@@ -127,5 +129,3 @@ const Signup = () => {
         </>
     );
 }
-
-export default Signup;
