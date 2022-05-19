@@ -1,7 +1,7 @@
 import { useCart } from '../../context/cart-context';
 import './Product.css';
 
-export default function Product(props) {
+export function Product(props) {
     const { _id, url, title, author, price, discount, categoryName } = props.product;
 
     const { store, dispatch } = useCart();

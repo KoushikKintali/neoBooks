@@ -1,4 +1,4 @@
-import Navbar from '../../components/navbar/Navbar';
+import { Navbar } from '../../components/index';
 import './Signin.css';
 import { captureInput, isRequestBodyValid } from '../../utils/util';
 import { useState } from 'react';
@@ -6,12 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import { useToastHandler } from '../../context/toast-context';
 import axios from 'axios';
 import { StatusCodes } from 'http-status-codes';
+import { useAuth } from '../../context/auth-context';
 
-const Signin = () => {
+export const Signin = () => {
 
     const [loginBody, setLoginBody] = useState({ email: '', password: '' });
 
     const navigate = useNavigate();
+
+    const { setToken } = useAuth();
 
     const { setToastHandler } = useToastHandler();
 
@@ -25,9 +28,9 @@ const Signin = () => {
             try {
                 event.preventDefault();
                 const response = await axios.post('/api/auth/login', body);
-                localStorage.setItem("token", response.data.encodedToken);
+                setToken(response.data.encodedToken);
                 setToastHandler({ type: 'success', message: 'Loggedin successfully' })
-                navigate('/products');
+                navigate('/products', { replace: true });
             } catch (error) {
                 console.error(error);
                 if (error.response.status === StatusCodes.NOT_FOUND) {
@@ -92,5 +95,3 @@ const Signin = () => {
         </>
     );
 }
-
-export default Signin;
