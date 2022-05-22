@@ -1,10 +1,14 @@
-import { useCart } from '../../context/cart-context';
+import { useAuth, useCart, useWishlist } from '../../context';
 import './Product.css';
 
 export function Product(props) {
     const { _id, url, title, author, price, discount, categoryName } = props.product;
 
     const { store, dispatch } = useCart();
+
+    const { token } = useAuth();
+
+    const { addToWishList, removeFromWishList, wishlistStore } = useWishlist();
 
     const getDiscountedPrice = (price, discount) => {
         return Number(price - ((price * discount) / 100));
@@ -16,8 +20,12 @@ export function Product(props) {
     }
 
     const isItemInWishlist = (id) => {
-        const { itemsInWishlist } = store;
-        return itemsInWishlist.includes(id);
+        const { itemsInWishlist } = wishlistStore;
+        return !!(itemsInWishlist.find(item => id === item._id));
+    }
+
+    const handleAddToWishList = (product, token) => {
+        addToWishList(product, token);
     }
 
     return (
@@ -42,7 +50,7 @@ export function Product(props) {
             </div>
             {
                 isItemInWishlist(_id) &&
-                <div className="card-wishlist is-active" onClick={() => dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: _id })}>
+                <div className="card-wishlist is-active" onClick={() => removeFromWishList(_id, token)}>
                     <span className="material-icons-outlined">
                         favorite
                     </span>
@@ -50,7 +58,7 @@ export function Product(props) {
             }
             {
                 !isItemInWishlist(_id) &&
-                <div className="card-wishlist" onClick={() => dispatch({ type: 'ADD_TO_WISHLIST', payload: _id })}>
+                <div className="card-wishlist" onClick={() => handleAddToWishList(props.product, token)}>
                     <span className="material-icons-outlined">
                         favorite_border
                     </span>
