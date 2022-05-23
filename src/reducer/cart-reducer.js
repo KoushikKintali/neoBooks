@@ -1,11 +1,11 @@
 export function CartReducer(state, action) {
     switch (action.type) {
+        case 'FETCH_CART_ITEMS':
         case 'ADD_TO_CART':
-            return { ...state, itemsInCart: state.itemsInCart.concat(action.payload) };
-        case 'ADD_TO_WISHLIST':
-            return { ...state, itemsInWishlist: state.itemsInWishlist.concat(action.payload) };
-        case 'REMOVE_FROM_WISHLIST':
-            return { ...state, itemsInWishlist: state.itemsInWishlist.filter((id) => id !== action.payload) };
+        case 'REMOVE_FROM_CART':
+        case 'INCREASE_ITEM_QUANTITY':
+        case 'DECREASE_ITEM_QUANTITY':
+            return { ...state, itemsInCart: action.payload };
         default:
             return state;
     }

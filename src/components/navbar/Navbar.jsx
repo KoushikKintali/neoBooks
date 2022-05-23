@@ -10,6 +10,8 @@ export const Navbar = () => {
     const navigate = useNavigate();
     const { setToastHandler } = useToastHandler();
     const { wishlistStore } = useWishlist();
+    const { cartStore } = useCart();
+
 
     const isLoginSignupPage = window.location.pathname.includes('login') || window.location.pathname.includes('signup');
 
@@ -26,6 +28,11 @@ export const Navbar = () => {
     const navigateToWishlistPage = () => {
         navigate('/wishlist');
     }
+
+    const navigateToCartPage = () => {
+        navigate('/cart');
+    }
+
     return (
         <>
             <nav className="nav">
@@ -55,11 +62,11 @@ export const Navbar = () => {
                         </a>
                     </li>}
                     {isLoggedIn && <li className="badge nav-item">
-                        <a className="nav-link" href="./cart.html">
+                        <a className="nav-link" onClick={() => navigateToCartPage()}>
                             <span className="material-icons-outlined icon">shopping_cart</span>
                             {
-                                store.itemsInCart && store.itemsInCart.length
-                                    ? <span className="badge-count">{store.itemsInCart.length}</span>
+                                cartStore && cartStore.itemsInCart && cartStore.itemsInCart.length
+                                    ? <span className="badge-count">{cartStore.itemsInCart.length}</span>
                                     : <></>
                             }
                         </a>

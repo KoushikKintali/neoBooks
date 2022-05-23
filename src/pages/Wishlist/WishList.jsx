@@ -10,18 +10,28 @@ export const WishList = () => {
             <Navbar />
             <section className="content-body">
                 <div className="all-products-body">
-                    <div className="products-section-title">
-                        <p className="title">Items in Wishist</p>
-                    </div>
-                    <div className="section-group-tiles">
-                        {
-                            wishlistStore.itemsInWishlist.length && wishlistStore.itemsInWishlist.map((product) => {
-                                return (
-                                    <Product product={product} key={product._id} />
-                                );
-                            })
-                        }
-                    </div>
+                    {
+                        wishlistStore.itemsInWishlist && wishlistStore.itemsInWishlist.length ?
+                            <>
+
+                                <div className="products-section-title">
+                                    <p className="title">Items in Wishist</p>
+                                </div>
+                                <div className="section-group-tiles">
+                                    {
+                                        wishlistStore.itemsInWishlist.length && wishlistStore.itemsInWishlist.map((product) => {
+                                            return (
+                                                <Product className="card-horizontal" product={product} key={product._id} />
+                                            );
+                                        })
+                                    }
+                                </div>
+                            </>
+                            :
+                            <div className="products-section-title">
+                                <p className="title">No Items in Wishist</p>
+                            </div>
+                    }
                 </div>
             </section>
         </>
