@@ -67,7 +67,7 @@ export function Product(props) {
                             <p>Quantity</p>
                             <button className="plus" onClick={() => increaseItemQuantity(_id, token)} >+</button>
                             <input className="quantity-input" readOnly value={qty} />
-                            <button className="minus" onClick={() => decreaseItemQuantity(_id, token)}>-</button>
+                            <button className="minus" disabled={(qty === 1)} title={qty === 1 ? "Min quantity is 1" : ""} onClick={() => decreaseItemQuantity(_id, token)}>-</button>
                         </div> : <></>
                 }
                 <div className="card-price">
