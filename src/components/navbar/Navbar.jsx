@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import { useAuth } from '../../context/auth-context';
-import { useCart } from '../../context/cart-context';
-import { useToastHandler } from '../../context/toast-context';
+import { useAuth, useCart, useToastHandler, useWishlist } from '../../context';
 
 
 export const Navbar = () => {
@@ -11,6 +9,9 @@ export const Navbar = () => {
     const { isLoggedIn, removeToken } = useAuth();
     const navigate = useNavigate();
     const { setToastHandler } = useToastHandler();
+    const { wishlistStore } = useWishlist();
+    const { cartStore } = useCart();
+
 
     const isLoginSignupPage = window.location.pathname.includes('login') || window.location.pathname.includes('signup');
 
@@ -24,10 +25,18 @@ export const Navbar = () => {
         }
     }
 
+    const navigateToWishlistPage = () => {
+        navigate('/wishlist');
+    }
+
+    const navigateToCartPage = () => {
+        navigate('/cart');
+    }
+
     return (
         <>
             <nav className="nav">
-                <a className="nav-logo" href="../index.html" alt="logo">
+                <a className="nav-logo" onClick={() => navigate('/products')} alt="logo">
                     <img className="logo" src={logo} alt="logo" />
                 </a>
                 <div className="nav-search">
@@ -42,26 +51,26 @@ export const Navbar = () => {
                             <a className="nav-link" onClick={() => handleLogoutLogin()}>{isLoggedIn ? 'Logout' : 'Login'}</a>
                         </li>
                     }
-                    <li className="badge nav-item">
-                        <a className="nav-link" href="./wishlist.html">
+                    {isLoggedIn && <li className="badge nav-item">
+                        <a className="nav-link" onClick={() => navigateToWishlistPage()}>
                             <span className="material-icons-outlined icon">favorite_border</span>
                             {
-                                store.itemsInWishlist && store.itemsInWishlist.length
-                                    ? <span className="badge-count">{store.itemsInWishlist.length}</span>
+                                wishlistStore && wishlistStore.itemsInWishlist && wishlistStore.itemsInWishlist.length
+                                    ? <span className="badge-count">{wishlistStore.itemsInWishlist.length}</span>
                                     : <></>
                             }
                         </a>
-                    </li>
-                    <li className="badge nav-item">
-                        <a className="nav-link" href="./cart.html">
+                    </li>}
+                    {isLoggedIn && <li className="badge nav-item">
+                        <a className="nav-link" onClick={() => navigateToCartPage()}>
                             <span className="material-icons-outlined icon">shopping_cart</span>
                             {
-                                store.itemsInCart && store.itemsInCart.length
-                                    ? <span className="badge-count">{store.itemsInCart.length}</span>
+                                cartStore && cartStore.itemsInCart && cartStore.itemsInCart.length
+                                    ? <span className="badge-count">{cartStore.itemsInCart.length}</span>
                                     : <></>
                             }
                         </a>
-                    </li>
+                    </li>}
                 </ul>
                 <div className="nav-item" id="nav-hamburger-button">
                     <span className="material-icons-outlined">

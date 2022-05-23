@@ -3,10 +3,9 @@ import './Signin.css';
 import { captureInput, isRequestBodyValid } from '../../utils/util';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useToastHandler } from '../../context/toast-context';
 import axios from 'axios';
 import { StatusCodes } from 'http-status-codes';
-import { useAuth } from '../../context/auth-context';
+import { useAuth, useToastHandler, useWishlist } from '../../context';
 
 export const Signin = () => {
 
@@ -17,6 +16,8 @@ export const Signin = () => {
     const { setToken } = useAuth();
 
     const { setToastHandler } = useToastHandler();
+
+    const { fetchWishList } = useWishlist();
 
     const goToSignupPage = (event) => {
         event.preventDefault();
@@ -29,6 +30,7 @@ export const Signin = () => {
                 event.preventDefault();
                 const response = await axios.post('/api/auth/login', body);
                 setToken(response.data.encodedToken);
+                fetchWishList(response.data.encodedToken);
                 setToastHandler({ type: 'success', message: 'Loggedin successfully' })
                 navigate('/products', { replace: true });
             } catch (error) {

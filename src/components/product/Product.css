@@ -61,6 +61,7 @@
 .card-quantity button {
     background-color: transparent;
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .card-horizontal .card-btn-group {

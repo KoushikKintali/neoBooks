@@ -3,10 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import { CartProvider } from './context/cart-context';
 import { BrowserRouter } from 'react-router-dom';
-import { ToastProvider } from './context/toast-context';
-import { AuthProvider } from './context/auth-context';
+import { AuthProvider, CartProvider, ToastProvider, WishlistProvider } from './context';
 
 // Call make Server
 makeServer();
@@ -16,9 +14,11 @@ ReactDOM.render(
         <AuthProvider>
             <ToastProvider>
                 <BrowserRouter>
-                    <CartProvider>
-                        <App />
-                    </CartProvider>
+                    <WishlistProvider>
+                        <CartProvider>
+                            <App />
+                        </CartProvider>
+                    </WishlistProvider>
                 </BrowserRouter>
             </ToastProvider>
         </AuthProvider>

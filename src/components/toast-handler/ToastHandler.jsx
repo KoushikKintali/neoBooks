@@ -1,11 +1,11 @@
-import { useToastHandler } from '../../context/toast-context';
+import { useToastHandler } from '../../context';
 import './ToastHandler.css';
 
 export const ToastHandler = () => {
 
     const { toastHandler } = useToastHandler();
     const getClassName = (toastHandler) => {
-        const className = 'snackbar snackbar-top-right';
+        const className = 'snackbar snackbar-bottom-right';
         const displayNone = ' display-none';
         if (toastHandler && toastHandler.type) {
             switch (toastHandler.type) {
